@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerols Web Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Poppins', sans-serif; background:#f0f2f5; color:#333; line-height:1.6; }
+
+/* Container */
+.container { width:1000px; max-width:95%; margin:0 auto; padding:20px; }
+
+/* Page Title */
+.page-title { text-align:center; font-size:2.5em; margin:40px 0 20px; color:#2c3e50; font-weight:700; }
+.page-title span { display:block; height:5px; width:100px; background:linear-gradient(90deg,#7f8c8d,#95a5a6); margin:15px auto 0; border-radius:3px; }
+
+/* Hero Section */
+.hero {
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+gap:20px;
+padding:20px;
+background: linear-gradient(135deg, #e0f7fa, #ffe0b2, #e1bee7);
+border-radius:15px;
+box-shadow:0 6px 20px rgba(0,0,0,0.06);
+transition:0.3s;
+max-width:900px;
+margin:0 auto;
+}
+.hero img {
+width:280px;
+height:380px;
+border-radius:15px;
+object-fit:cover;
+border:2px solid #7f8c8d;
+transition:0.3s;
+}
+.hero img:hover { transform:scale(1.02); }
+.hero-text { flex:1; padding-left:15px; }
+.hero-text h1 { font-size:2em; margin-bottom:12px; color:#2c3e50; }
+.hero-text p { font-size:1em; margin:8px 0; color:#555; }
+.hero-text p.more-info { margin-top:12px; color:#444; font-size:0.95em; line-height:1.5em; }
+
+/* Skills Section */
+.skills { display:flex; flex-wrap:wrap; gap:15px; justify-content:flex-start; margin:30px 0; }
+.skills span { background:linear-gradient(135deg,#bdc3c7,#ecf0f1); color:#2c3e50; padding:10px 20px; border-radius:25px; font-size:1em; font-weight:500; box-shadow:0 4px 12px rgba(0,0,0,0.06); transition:0.3s; cursor:default; }
+.skills span:hover { transform:scale(1.05); }
+
+/* Portfolio Section */
+.projects { display:flex; flex-wrap:wrap; gap:30px; margin:50px 0; justify-content:center; }
+.project { background:#ffffff; padding:20px; border-radius:20px; width:300px; text-align:center; box-shadow:0 8px 25px rgba(0,0,0,0.08); font-size:0.95em; transition:0.3s; cursor:pointer; position:relative; overflow:hidden; }
+.project:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,0,0,0.12); }
+.project h3 { color:#2c3e50; font-size:1.2em; margin-bottom:10px; }
+.project p { font-size:0.95em; margin-bottom:12px; color:#555; }
+.project img { width:100%; border-radius:15px; cursor:pointer; transition:0.3s; }
+.project img:hover { transform:scale(1.05); opacity:0.9; }
+
+/* Project Detail Modal */
+#project-detail { display:none; background:rgba(0,0,0,0.6); position:fixed; top:0; left:0; width:100%; height:100%; justify-content:center; align-items:center; z-index:1000; animation:fadeIn 0.3s ease-in-out; }
+#project-detail .content { background:#ffffff; padding:30px; border-radius:20px; max-width:800px; width:90%; max-height:90%; overflow-y:auto; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.12); }
+#project-detail .close { position:absolute; top:15px; right:20px; font-size:1.8em; font-weight:bold; cursor:pointer; color:#e74c3c; transition:0.2s; }
+#project-detail .close:hover { color:#c0392b; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+/* Contact Section */
+.contact { margin:40px 0; font-size:1em; text-align:center; background:#ffffff; padding:25px; border-radius:20px; box-shadow:0 8px 25px rgba(0,0,0,0.08); }
+.contact a { display:inline-block; margin-top:15px; padding:12px 30px; background:linear-gradient(135deg,#7f8c8d,#95a5a6); color:#fff; border-radius:30px; text-decoration:none; font-size:1em; font-weight:500; transition:0.3s; }
+.contact a:hover { background:linear-gradient(135deg,#95a5a6,#bdc3c7); }
+
+/* Footer */
+footer { text-align:center; font-size:0.95em; margin-top:30px; color:#fff; background:#2c3e50; padding:25px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+footer p { margin:5px 0; }
+.social-icons { margin-top:10px; }
+.social-icons a { margin:0 8px; display:inline-block; color:#fff; font-size:1.2em; transition:0.3s; text-decoration:none; }
+.social-icons a:hover { color:#bdc3c7; }
+
+/* Responsive */
+@media(max-width:900px){
+.hero { flex-direction:column; text-align:center; padding:15px; max-width:95%; }
+.hero-text { padding-left:0; text-align:center; }
+.hero img { width:250px; height:340px; margin-bottom:15px; }
+.skills, .projects { justify-content:center; }
+}
+@media(max-width:500px){
+.skills { justify-content:flex-start; overflow-x:auto; padding-bottom:10px; }
+.skills::-webkit-scrollbar { height:6px; }
+.skills::-webkit-scrollbar-thumb { background:#7f8c8d; border-radius:3px; }
+.hero img { width:200px; height:280px; }
+.hero-text h1 { font-size:1.6em; }
+.hero-text p, .hero-text p.more-info { font-size:0.9em; line-height:1.3em; }
+.project { width:90%; }
+} </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<!-- Page Title -->
+
+<div class="page-title">
+    Kyrillos Web Portfolio
+    <span></span>
+</div>
+
+<!-- Hero Section -->
+
+<div class="hero">
+    <img src="portrait.jpg" alt="Kyrillos">
+    <div class="hero-text">
+        <h1>Kyrillos Helal Kamel</h1>
+        <p>17 years old | Senior | Programming Department</p>
+        <p>Eva School of Applied Technology, October City</p>
+        <p>Zahraa El Maadi, next to Wadi Degla Club</p>
+        <p>I am passionate about building modern and interactive web applications using ASP.NET MVC, REST APIs, HTML, CSS, and JavaScript. I enjoy crafting sleek UI/UX designs in Figma and turning ideas into functional websites.</p>
+        <p class="more-info">My projects showcase a strong focus on clean and responsive designs, smooth animations, and intuitive navigation. I continuously explore new web technologies to enhance functionality and user experience. I also enjoy collaborating with teams to deliver high-quality projects that solve real-world problems.</p>
+        <a href="mailto:kerols@example.com" class="btn-contact">Contact Me</a>
+    </div>
+</div>
+
+<!-- Skills Section -->
+
+<div class="skills">
+    <span>ASP.NET MVC & Controllers</span>
+    <span>RESTful APIs</span>
+    <span>HTML & CSS</span>
+    <span>JavaScript</span>
+    <span>Figma UI/UX Design</span>
+    <span>Responsive Design</span>
+    <span>Teamwork & Communication</span>
+    <span>Problem Solving</span>
+</div>
+
+<!-- Portfolio Section -->
+
+<div class="projects">
+    <div class="project" data-title="Wadi Degla Club MVC Site" data-description="MVC web app for Wadi Degla Club..." data-image="project1.jpg">
+        <h3>Wadi Degla Club MVC Site</h3>
+        <p>MVC Web App for Wadi Degla Club with authentication, CRUD, and event management.</p>
+        <img src="project1.jpg" alt="Wadi Degla Club">
+    </div>
+    <div class="project" data-title="Interactive JS Site" data-description="Dynamic website with HTML, CSS, JS..." data-image="project2.jpg">
+        <h3>Interactive JS Site</h3>
+        <p>HTML, CSS, and JS website with dynamic interactive content and smooth UI interactions.</p>
+        <img src="project2.jpg" alt="Interactive JS">
+    </div>
+    <div class="project" data-title="Supermarket E-Commerce" data-description="Modern e-commerce website for supermarket..." data-image="project3.jpg">
+        <h3>Supermarket E-Commerce</h3>
+        <p>HTML & CSS online store project with shopping cart and responsive design for supermarket products.</p>
+        <img src="project3.jpg" alt="Supermarket E-Commerce">
+    </div>
+</div>
+
+<!-- Project Modal -->
+
+<div id="project-detail">
+    <div class="content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <img id="modal-image" src="" alt="" style="width:100%; border-radius:15px; margin-bottom:15px;">
+        <p id="modal-description"></p>
+    </div>
+</div>
+
+<!-- Contact Section -->
+
+<div class="contact">
+    <p>Email: kerols@example.com</p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/kerols" target="_blank">linkedin.com/in/kerols</a></p>
+    <p>GitHub: <a href="https://github.com/kerols" target="_blank">github.com/kerols</a></p>
+    <div class="social-icons">
+        <a href="#" target="_blank">&#x1F426;</a>
+        <a href="#" target="_blank">&#x1F4F1;</a>
+        <a href="#" target="_blank">&#x1F4BB;</a>
+    </div>
+    <a href="mailto:kerols@example.com">Send Email</a>
+</div>
+
+</div>
+
+<footer>
+    <p>&copy; 2025 Kerols Portfolio</p>
+    <p>Designed and Developed by Kerols</p>
+</footer>
+
+<script>
+// Project Modal
+const modal = document.getElementById('project-detail');
+const modalTitle = document.getElementById('modal-title');
+const modalDesc = document.getElementById('modal-description');
+const modalImage = document.getElementById('modal-image');
+const closeBtn = document.querySelector('#project-detail .close');
+
+document.querySelectorAll('.project').forEach(project => {
+    project.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalTitle.textContent = project.getAttribute('data-title');
+        modalDesc.textContent = project.getAttribute('data-description');
+        modalImage.src = project.getAttribute('data-image');
+    });
+});
+
+closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+window.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+</script>
+
+</body>
+</html>
